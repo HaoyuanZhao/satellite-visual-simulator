@@ -1,0 +1,8 @@
+# Optional local dataset mount. Use together with docker-compose.yml.
+services:
+  backend:
+    environment:
+      - SATELLITE_DATA_ROOT=/app/local-data
+      - SATELLITE_DATA_PATH=/app/data/demo_constellation
+    volumes:
+      - ./data:/app/local-data:ro

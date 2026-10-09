@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: satellite-network-globe-backend
+    environment:
+      - SATELLITE_DATA_ROOT=${SATELLITE_DATA_ROOT:-/app/data}
+      - SATELLITE_DATA_PATH=${SATELLITE_DATA_PATH:-/app/data/demo_constellation}
+      - SATELLITE_DB_ROOT=${SATELLITE_DB_ROOT:-/app/satellite_db_cache}
+    volumes:
+      - ${SATELLITE_DB_VOLUME:-./satellite_db_cache}:/app/satellite_db_cache
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: satellite-network-globe-frontend
+    depends_on:
+      - backend
+    ports:
+      - "127.0.0.1:8080:80"
