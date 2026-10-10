@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import * as Cesium from "cesium";
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import { fetchFrames, fetchMetadata, fetchDatasets, ApiFrame, ApiIterationMeta, ApiRoutingPath, ApiSatellite, DatasetOption } from "./services/api";
+import { advancePlaybackCursor, buildPlaybackTimeline, simulationTimeAtCursor } from "./services/playback";
 
 interface InterpolatedSatellite extends ApiSatellite {
   latitude: number;
@@ -86,6 +87,9 @@ const INITIAL_ZOOM_STEP = 0.12;
 const DRAG_ROTATE_SPEED_RAD = 0.003;
 const INITIAL_FRAME_WINDOW = 12;
 const FRAME_PRELOAD_RADIUS = 6;
+const FAST_PLAYBACK_THRESHOLD = 100;
+const FAST_PLAYBACK_BATCH_SIZE = 24;
+const PLAYBACK_SPEEDS = [0.1, 0.25, 0.5, 1, 2, 5, 10, 100, 500, 1000, 5000, 10000];
 
 function App() {
   const viewerRef = useRef<Cesium.Viewer | null>(null);
@@ -106,6 +110,7 @@ function App() {
   const frameByIterationRef = useRef<Map<number, ApiFrame>>(new Map());
 
   const [metadata, setMetadata] = useState<ApiIterationMeta[]>([]);
+  const [stepSeconds, setStepSeconds] = useState<number | null>(null);
   const [datasetOptions, setDatasetOptions] = useState<DatasetOption[]>([]);
   const [selectedDataset, setSelectedDataset] = useState("");
   const [frameByIteration, setFrameByIteration] = useState<Map<number, ApiFrame>>(new Map());
@@ -122,7 +127,7 @@ function App() {
   const [expandedShells, setExpandedShells] = useState<SelectedSet>(new Set());
   const [selectedRouteIndex, setSelectedRouteIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [animationDelayMs, setAnimationDelayMs] = useState(1000);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [hoverTooltip, setHoverTooltip] = useState<SatelliteTooltip | null>(null);
   const [hoverTooltipPos, setHoverTooltipPos] = useState<ScreenPosition | null>(null);
 
@@ -133,6 +138,9 @@ function App() {
   }, [metadata, frameByIteration]);
 
   const maxFrameIndex = Math.max(metadata.length - 1, 0);
+  const playbackTimeline = useMemo(() => buildPlaybackTimeline(metadata, stepSeconds), [metadata, stepSeconds]);
+  const canPlay = playbackTimeline !== null && maxFrameIndex > 0;
+  const needsFastPlaybackFrames = playbackSpeed >= FAST_PLAYBACK_THRESHOLD && loadedFrames.length < metadata.length;
   const framePos = Math.min(playCursor, maxFrameIndex);
   const lowerFrameIndex = Math.floor(framePos);
   const upperFrameIndex = Math.min(lowerFrameIndex + 1, maxFrameIndex);
@@ -462,6 +470,9 @@ function App() {
       setIsLoading(true);
       setError("");
       setMetadata([]);
+      setStepSeconds(null);
+      setIsPlaying(false);
+      isPlayingRef.current = false;
       setFrameByIteration(new Map());
       setHoverTooltip(null);
       setHoverTooltipPos(null);
@@ -476,6 +487,7 @@ function App() {
         return;
       }
       setMetadata(meta.iterations);
+      setStepSeconds(meta.step_seconds ?? null);
 
       const initialWindowEnd = Math.min(INITIAL_FRAME_WINDOW - 1, meta.iterations.length - 1);
       const framesData = await loadFramesByMetadataRange(
@@ -553,13 +565,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (metadata.length === 0 || getFrameByMetadataIndex(0) === undefined) {
+    if (isLoading || !canPlay || getFrameByMetadataIndex(0) === undefined) {
       return;
     }
     playCursorRef.current = 0;
     setPlayCursor(0);
     setIsPlaying(true);
-  }, [metadata.length]);
+  }, [isLoading, playbackTimeline]);
 
   useEffect(() => {
     if (isLoading || metadata.length === 0) {
@@ -579,6 +591,28 @@ function App() {
       // ignore prefetch failures so UI remains responsive while dragging/playback continues
     });
   }, [isLoading, metadata.length, metadata, selectedDataset, playCursor]);
+
+  useEffect(() => {
+    if (isLoading || playbackSpeed < FAST_PLAYBACK_THRESHOLD || metadata.length === 0) return;
+    let canceled = false;
+    const requestId = datasetRequestIdRef.current;
+    const preload = async () => {
+      for (let start = 0; start < metadata.length; start += FAST_PLAYBACK_BATCH_SIZE) {
+        if (canceled || requestId !== datasetRequestIdRef.current) return;
+        await loadFramesByMetadataRange(
+          start, Math.min(start + FAST_PLAYBACK_BATCH_SIZE - 1, metadata.length - 1),
+          metadata, selectedDataset, requestId,
+        );
+      }
+    };
+    void preload().catch((e) => {
+      if (!canceled && requestId === datasetRequestIdRef.current) {
+        setError(`Playback frames could not be loaded: ${(e as Error).message}`);
+        setIsPlaying(false);
+      }
+    });
+    return () => { canceled = true; };
+  }, [isLoading, playbackSpeed, metadata, selectedDataset]);
 
   useEffect(() => {
     if (!currentFrame) return;
@@ -915,7 +949,7 @@ function App() {
   ]);
 
   useEffect(() => {
-    if (!isPlaying || metadata.length === 0 || maxFrameIndex === 0) {
+    if (!isPlaying || !canPlay || playbackTimeline === null || needsFastPlaybackFrames) {
       return;
     }
 
@@ -923,12 +957,9 @@ function App() {
       if (!lastFrameTsRef.current) {
         lastFrameTsRef.current = ts;
       }
-      const step = (ts - lastFrameTsRef.current) / animationDelayMs;
+      const simulatedSeconds = ((ts - lastFrameTsRef.current) / 1000) * playbackSpeed;
       lastFrameTsRef.current = ts;
-      let next = playCursorRef.current + step;
-      if (next > maxFrameIndex) {
-        next = 0;
-      }
+      const next = advancePlaybackCursor(playCursorRef.current, simulatedSeconds, playbackTimeline);
       playCursorRef.current = next;
       setPlayCursor(next);
       playbackAnimationRef.current = requestAnimationFrame(tick);
@@ -942,7 +973,7 @@ function App() {
       }
       lastFrameTsRef.current = 0;
     };
-  }, [isPlaying, animationDelayMs, maxFrameIndex]);
+  }, [isPlaying, playbackSpeed, playbackTimeline, needsFastPlaybackFrames]);
 
   useEffect(() => {
     playCursorRef.current = playCursor;
@@ -959,7 +990,9 @@ function App() {
     return `iter ${label}`;
   }, [interpT, currentFrame, nextFrame]);
 
-  const selectedTime = currentFrame?.sim_time_utc || metadata[lowerFrameIndex]?.sim_time_utc || "N/A";
+  const selectedTimeMs = simulationTimeAtCursor(metadata, framePos, playbackTimeline);
+  const selectedTimeIso = selectedTimeMs === null ? undefined : new Date(selectedTimeMs).toISOString();
+  const selectedTime = selectedTimeIso?.slice(0, 19).replace("T", " ") ?? "N/A";
 
   const toggleShell = (shell: number) => {
     const next = new Set(selectedShells);
@@ -998,7 +1031,6 @@ function App() {
   const onPlayToggle = () => {
     setIsPlaying((previouslyPlaying) => {
       if (previouslyPlaying) {
-        snapPlayCursorToNearestIteration();
         setHoverTooltip(null);
         setHoverTooltipPos(null);
       }
@@ -1027,15 +1059,6 @@ function App() {
     } else {
       setSelectedShells(new Set());
     }
-  };
-
-  const snapPlayCursorToNearestIteration = () => {
-    const nearest = Math.min(Math.max(Math.round(playCursor), 0), maxFrameIndex);
-    if (nearest === playCursor) {
-      return;
-    }
-    playCursorRef.current = nearest;
-    setPlayCursor(nearest);
   };
 
   return (
@@ -1106,9 +1129,13 @@ function App() {
                 />
                 <span className="value-chip">{iterationLabel}</span>
               </div>
-              <div className="small-meta">time: {selectedTime}</div>
+              <div className="small-meta">time (UTC): <time dateTime={selectedTimeIso}>{selectedTime}</time></div>
+              <div className="small-meta">Step: {stepSeconds === null ? "Unavailable" : `${stepSeconds.toLocaleString(undefined, { maximumFractionDigits: 6 })} s`}</div>
+              {needsFastPlaybackFrames && !error && (
+                <div className="small-meta" role="status">Loading frames for fast playback ({loadedFrames.length}/{metadata.length})…</div>
+              )}
               <div className="button-row">
-                <button type="button" onClick={onPlayToggle} disabled={metadata.length === 0}>
+                <button type="button" onClick={onPlayToggle} disabled={!canPlay}>
                   {isPlaying ? "Pause" : "Play"}
                 </button>
                 <button
@@ -1123,23 +1150,14 @@ function App() {
                 </button>
               </div>
               <div className="button-row">
-                <label htmlFor="delaySelect">ms/iter</label>
+                <label htmlFor="speedSelect">Speed</label>
                 <select
-                  id="delaySelect"
-                  value={animationDelayMs}
-                  onChange={(e) => setAnimationDelayMs(Number(e.target.value))}
-                  disabled={metadata.length === 0}
+                  id="speedSelect"
+                  value={playbackSpeed}
+                  onChange={(e) => setPlaybackSpeed(Number(e.target.value))}
+                  disabled={!canPlay}
                 >
-                  <option value={500}>500</option>
-                  <option value={1000}>1000</option>
-                  <option value={1500}>1500</option>
-                  <option value={2000}>2000</option>
-                  <option value={2500}>2500</option>
-                  <option value={3000}>3000</option>
-                  <option value={3500}>3500</option>
-                  <option value={4000}>4000</option>
-                  <option value={4500}>4500</option>
-                  <option value={5000}>5000</option>
+                  {PLAYBACK_SPEEDS.map((speed) => <option key={speed} value={speed}>{speed}×</option>)}
                 </select>
               </div>
             </section>
@@ -1229,6 +1247,11 @@ function App() {
                 )}
               </select>
               <div className="small-meta">{routeLabel}</div>
+              {currentRoute?.routing_method && (
+                <div className="small-meta">Method: {currentRoute.routing_method === "VISUAL_DEMO"
+                  ? "VISUAL_DEMO · visualization demo"
+                  : currentRoute.routing_method}</div>
+              )}
             </section>
           </>
         )}

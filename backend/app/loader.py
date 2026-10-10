@@ -6,10 +6,11 @@ import threading
 from dataclasses import dataclass
 from pathlib import Path
 import sqlite3
+from statistics import median
 
 import pandas as pd
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 
 def _safe_float(value, default=0.0):
@@ -463,6 +464,8 @@ class SatelliteDataset:
 
         routing_paths = []
         for _, row in path_iter.iterrows():
+            routing_method = row.get("routing_method")
+            routing_method = (routing_method.strip() or None) if isinstance(routing_method, str) else None
             routing_paths.append(
                 {
                     "src_lat": _safe_float(row.get("src_lat")),
@@ -472,6 +475,7 @@ class SatelliteDataset:
                     "src_sat_id": _safe_int(row.get("src_sat_id"), default=None),
                     "dst_sat_id": _safe_int(row.get("dst_sat_id"), default=None),
                     "routing_degradation_aware": bool(row.get("routing_degradation_aware", False)),
+                    "routing_method": routing_method,
                     "task_state": row.get("task_state"),
                     "e2e_delay_s": _safe_float(row.get("e2e_delay_s"), default=None),
                     "e2e_bandwidth_mbps": _safe_float(row.get("e2e_bandwidth_mbps"), default=None),
@@ -549,6 +553,48 @@ class SatelliteDataset:
             ]
         finally:
             conn.close()
+
+    def get_step_seconds(self, metadata: list[dict]) -> float | None:
+        """Read the actual interval, preferring recorded times over configuration."""
+        timed_frames = []
+        for frame in metadata:
+            timestamp = pd.to_datetime(frame["sim_time_utc"], utc=True, errors="coerce")
+            if pd.notna(timestamp):
+                timed_frames.append((frame["iteration"], timestamp))
+        intervals = []
+        for (previous_iteration, previous_time), (iteration, timestamp) in zip(timed_frames, timed_frames[1:]):
+            iteration_gap = iteration - previous_iteration
+            seconds = (timestamp - previous_time).total_seconds()
+            if iteration_gap > 0 and seconds > 0:
+                intervals.append(seconds / iteration_gap)
+        if intervals:
+            return float(median(intervals))
+
+        parameters_path = self.dataset_path / "Hyperparameters.csv"
+        if parameters_path.is_file():
+            try:
+                parameters = pd.read_csv(parameters_path)
+            except (OSError, ValueError, pd.errors.ParserError):
+                parameters = pd.DataFrame()
+            if {"name", "value"}.issubset(parameters.columns):
+                for name, scale in (("step_seconds", 1), ("INTERVAL_LENGTH_MIN", 60)):
+                    for value in parameters.loc[parameters["name"] == name, "value"]:
+                        seconds = _safe_float(value, default=None)
+                        if seconds is not None and seconds > 0 and math.isfinite(seconds * scale):
+                            return seconds * scale
+
+        provenance_path = self.dataset_path / "demo_provenance.json"
+        if provenance_path.is_file():
+            try:
+                provenance = json.loads(provenance_path.read_text())
+            except (ValueError, OSError):
+                provenance = {}
+            if isinstance(provenance, dict):
+                value = provenance.get("step_seconds")
+                seconds = None if isinstance(value, bool) else _safe_float(value, default=None)
+                if seconds is not None and seconds > 0:
+                    return seconds
+        return None
 
     def list_iterations(self) -> list[int]:
         conn = sqlite3.connect(self.db_path)

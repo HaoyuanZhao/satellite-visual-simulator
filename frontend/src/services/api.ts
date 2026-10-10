@@ -29,6 +29,7 @@ export interface ApiRoutingPath {
   src_sat_id: number | null;
   dst_sat_id: number | null;
   routing_degradation_aware: boolean;
+  routing_method: string | null;
   task_state: string | null;
   e2e_delay_s: number | null;
   e2e_bandwidth_mbps: number | null;
@@ -65,6 +66,7 @@ export interface ApiIterationMeta {
 
 interface MetadataResponse {
   dataset: string;
+  step_seconds: number | null;
   iterations: ApiIterationMeta[];
 }
 

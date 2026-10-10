@@ -36,8 +36,22 @@ iteration,sim_time_utc,ISL_link,degraded_ISL_link
 | `Routing_path.csv` | `iteration`, `src_lat`, `src_lon`, `dst_lat`, `dst_lon`, `src_sat_id`, `dst_sat_id`, `path` | One row per route; `path` is a serialized list of satellite IDs. |
 | `gs_visibility.csv` | `iteration`, `id`, `gs_name`, `lat`, `lon` | Ground station markers per frame. |
 | `Sat_usage.csv` | `iteration`, `name`, `shell`, `orbit` | Shell and orbit information joined by satellite name and iteration. |
+| `Hyperparameters.csv` | `name`, `value` | Optional timing parameters: `step_seconds` or `INTERVAL_LENGTH_MIN`. |
 
-Routing rows can also include `routing_degradation_aware`, `task_state`, `dst_gs`,
+`/api/metadata` returns `step_seconds`, inferred from the median timestamp gap per
+iteration. Recorded timestamps take precedence over optional timing parameters.
+An optional `demo_provenance.json` with a positive `step_seconds` is also supported.
+When timing cannot be determined, `step_seconds` is `null` and automatic playback
+is disabled; the timeline still supports manual frame selection.
+
+Playback uses recorded intervals between frames, including unequal intervals or
+skipped iterations. At 1×, a 30-second interval takes 30 real seconds; at 10× it
+takes three. The UTC time display interpolates between frames.
+Speeds of 100× and above load all frames in batches before advancing the timeline,
+so fast playback can skip ahead without displaying stale positions.
+
+Routing rows can also include `routing_method` (a display name),
+`routing_degradation_aware`, `task_state`, `dst_gs`,
 `e2e_delay_s` (seconds), `e2e_bandwidth_mbps` (Mbps), `e2e_packet_loss`, and
 `e2e_success_prob`. Packet loss and success probability use fractions from 0 to 1.
 Leave missing numeric metrics empty. These values are returned by the API, not recalculated.

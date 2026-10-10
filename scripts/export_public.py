@@ -20,6 +20,7 @@ SOURCE_GROUPS = (
     ("backend/app", {".py"}),
     ("backend/tests", {".py"}),
     ("frontend/src", {".ts", ".tsx", ".css"}),
+    ("frontend/tests", {".mjs"}),
     ("demo_data", {".csv", ".md"}),
     ("docs", {".md", ".png", ".webp"}),
     ("scripts", {".py"}),

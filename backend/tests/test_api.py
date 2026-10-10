@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -36,7 +37,8 @@ class ApiTests(unittest.TestCase):
     def test_sample_playback_and_ranges(self):
         metadata = self.client.get("/api/metadata", params={"dataset": "demo_constellation"})
         self.assertEqual(metadata.status_code, 200)
-        self.assertEqual(set(metadata.json()), {"dataset", "iterations"})
+        self.assertEqual(set(metadata.json()), {"dataset", "step_seconds", "iterations"})
+        self.assertEqual(metadata.json()["step_seconds"], 60)
         self.assertEqual(len(metadata.json()["iterations"]), FRAMES)
         self.assertEqual(metadata.json()["iterations"][0]["satellite_count"], 96)
         self.assertEqual(metadata.json()["iterations"][0]["isl_edge_count"], 180)
@@ -78,6 +80,19 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(first["satellites"][0]["name"], "Demo-Sat-000")
         self.assertEqual(second["satellites"][0]["name"], "Updated-Sat-000")
 
+    def test_routing_method_is_optional_and_updates_with_source(self):
+        original = self.client.get("/api/frames/0").json()
+        self.assertTrue(all(route["routing_method"] is None for route in original["routing_paths"]))
+        source = self.dataset / "Routing_path.csv"
+        routes = pd.read_csv(source)
+        routes["routing_method"] = "VISUAL_DEMO"
+        routes.loc[1, "routing_method"] = None
+        routes.to_csv(source, index=False)
+        updated = self.client.get("/api/frames/0")
+        self.assertEqual(updated.status_code, 200)
+        self.assertEqual(updated.json()["routing_paths"][0]["routing_method"], "VISUAL_DEMO")
+        self.assertIsNone(updated.json()["routing_paths"][1]["routing_method"])
+
     def test_parquet_links_and_missing_optional_layers(self):
         links = self.dataset / "ISL_links.csv"
         pd.read_csv(links).to_parquet(self.dataset / "ISL_links.parquet", index=False)
@@ -90,6 +105,44 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(len(frame["isl_edges"]), 180)
         self.assertEqual(frame["routing_paths"], [])
         self.assertEqual(frame["gs_stations"], [])
+
+    def test_timestamps_override_config_and_step_changes_invalidate_cache(self):
+        (self.dataset / "Hyperparameters.csv").write_text("group,name,value\nglobal,INTERVAL_LENGTH_MIN,10\n")
+        self.assertEqual(self.client.get("/api/metadata").json()["step_seconds"], 60)
+        links_path = self.dataset / "ISL_links.csv"
+        links = pd.read_csv(links_path)
+        start = pd.Timestamp("2025-01-01T00:00:00Z")
+        links["sim_time_utc"] = [(start + pd.Timedelta(seconds=int(i) * 30)).isoformat() for i in links["iteration"]]
+        # The positions still have every iteration, while only even iterations
+        # have timestamps. Infer seconds per iteration rather than per stored row.
+        links.loc[links["iteration"] % 2 == 0].to_csv(links_path, index=False)
+        metadata = self.client.get("/api/metadata").json()
+        self.assertEqual(metadata["step_seconds"], 30)
+        self.assertEqual(metadata["iterations"][2]["sim_time_utc"], "2025-01-01T00:01:00+00:00")
+
+    def test_timing_parameters_when_timestamps_are_missing(self):
+        links = self.dataset / "ISL_links.csv"
+        pd.read_csv(links).drop(columns=["sim_time_utc"]).to_csv(links, index=False)
+        self.assertIsNone(self.client.get("/api/metadata").json()["step_seconds"])
+        provenance = self.dataset / "demo_provenance.json"
+        provenance.write_text(json.dumps({"step_seconds": 30}))
+        self.assertEqual(self.client.get("/api/metadata").json()["step_seconds"], 30)
+        parameters = self.dataset / "Hyperparameters.csv"
+        parameters.write_text("group,name,value\nglobal,INTERVAL_LENGTH_MIN,0.5\n")
+        self.assertEqual(self.client.get("/api/metadata").json()["step_seconds"], 30)
+        parameters.write_text("group,name,value\nglobal,INTERVAL_LENGTH_MIN,2\n")
+        self.assertEqual(self.client.get("/api/metadata").json()["step_seconds"], 120)
+
+    def test_invalid_optional_timing_does_not_break_metadata(self):
+        links = self.dataset / "ISL_links.csv"
+        pd.read_csv(links).drop(columns=["sim_time_utc"]).to_csv(links, index=False)
+        (self.dataset / "Hyperparameters.csv").write_text("")
+        for value in (0, -30, "nan", True, None):
+            with self.subTest(step=value):
+                (self.dataset / "demo_provenance.json").write_text(json.dumps({"step_seconds": value}))
+                response = self.client.get("/api/metadata")
+                self.assertEqual(response.status_code, 200)
+                self.assertIsNone(response.json()["step_seconds"])
 
 
 if __name__ == "__main__":

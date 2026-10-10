@@ -1,73 +1,481 @@
-iteration,id,gs_name,lat,lon
-0,0,Demo-GS-0,35,-120
-0,1,Demo-GS-1,45,15
-0,2,Demo-GS-2,-25,130
-1,0,Demo-GS-0,35,-120
-1,1,Demo-GS-1,45,15
-1,2,Demo-GS-2,-25,130
-2,0,Demo-GS-0,35,-120
-2,1,Demo-GS-1,45,15
-2,2,Demo-GS-2,-25,130
-3,0,Demo-GS-0,35,-120
-3,1,Demo-GS-1,45,15
-3,2,Demo-GS-2,-25,130
-4,0,Demo-GS-0,35,-120
-4,1,Demo-GS-1,45,15
-4,2,Demo-GS-2,-25,130
-5,0,Demo-GS-0,35,-120
-5,1,Demo-GS-1,45,15
-5,2,Demo-GS-2,-25,130
-6,0,Demo-GS-0,35,-120
-6,1,Demo-GS-1,45,15
-6,2,Demo-GS-2,-25,130
-7,0,Demo-GS-0,35,-120
-7,1,Demo-GS-1,45,15
-7,2,Demo-GS-2,-25,130
-8,0,Demo-GS-0,35,-120
-8,1,Demo-GS-1,45,15
-8,2,Demo-GS-2,-25,130
-9,0,Demo-GS-0,35,-120
-9,1,Demo-GS-1,45,15
-9,2,Demo-GS-2,-25,130
-10,0,Demo-GS-0,35,-120
-10,1,Demo-GS-1,45,15
-10,2,Demo-GS-2,-25,130
-11,0,Demo-GS-0,35,-120
-11,1,Demo-GS-1,45,15
-11,2,Demo-GS-2,-25,130
-12,0,Demo-GS-0,35,-120
-12,1,Demo-GS-1,45,15
-12,2,Demo-GS-2,-25,130
-13,0,Demo-GS-0,35,-120
-13,1,Demo-GS-1,45,15
-13,2,Demo-GS-2,-25,130
-14,0,Demo-GS-0,35,-120
-14,1,Demo-GS-1,45,15
-14,2,Demo-GS-2,-25,130
-15,0,Demo-GS-0,35,-120
-15,1,Demo-GS-1,45,15
-15,2,Demo-GS-2,-25,130
-16,0,Demo-GS-0,35,-120
-16,1,Demo-GS-1,45,15
-16,2,Demo-GS-2,-25,130
-17,0,Demo-GS-0,35,-120
-17,1,Demo-GS-1,45,15
-17,2,Demo-GS-2,-25,130
-18,0,Demo-GS-0,35,-120
-18,1,Demo-GS-1,45,15
-18,2,Demo-GS-2,-25,130
-19,0,Demo-GS-0,35,-120
-19,1,Demo-GS-1,45,15
-19,2,Demo-GS-2,-25,130
-20,0,Demo-GS-0,35,-120
-20,1,Demo-GS-1,45,15
-20,2,Demo-GS-2,-25,130
-21,0,Demo-GS-0,35,-120
-21,1,Demo-GS-1,45,15
-21,2,Demo-GS-2,-25,130
-22,0,Demo-GS-0,35,-120
-22,1,Demo-GS-1,45,15
-22,2,Demo-GS-2,-25,130
-23,0,Demo-GS-0,35,-120
-23,1,Demo-GS-1,45,15
-23,2,Demo-GS-2,-25,130
+id,gs_name,lat,lon,ingress_traffic_amount,iteration,num_visible_sats,visible_shells,gsl_switches
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,0,11,"[11, 0, 0]",11
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,1,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,2,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,3,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,4,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,5,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,6,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,7,13,"[13, 0, 0]",7
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,8,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,9,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,10,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,11,10,"[10, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,12,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,13,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,14,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,15,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,16,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,17,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,18,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,19,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,20,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,21,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,22,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,23,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,24,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,25,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,26,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,27,14,"[14, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,28,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,29,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,30,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,31,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,32,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,33,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,34,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,35,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,36,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,37,11,"[11, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,38,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,39,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,40,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,41,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,42,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,43,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,44,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,45,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,46,13,"[13, 0, 0]",7
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,47,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,48,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,49,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,50,10,"[10, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,51,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,52,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,53,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,54,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,55,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,56,13,"[13, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,57,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,58,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,59,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,60,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,61,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,62,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,63,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,64,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,65,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,66,14,"[14, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,67,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,68,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,69,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,70,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,71,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,72,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,73,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,74,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,75,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,76,11,"[11, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,77,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,78,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,79,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,80,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,81,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,82,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,83,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,84,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,85,13,"[13, 0, 0]",7
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,86,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,87,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,88,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,89,10,"[10, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,90,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,91,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,92,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,93,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,94,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,95,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,96,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,97,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,98,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,99,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,100,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,101,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,102,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,103,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,104,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,105,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,106,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,107,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,108,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,109,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,110,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,111,10,"[10, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,112,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,113,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,114,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,115,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,116,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,117,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,118,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,119,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,120,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,121,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,122,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,123,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,124,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,125,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,126,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,127,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,128,10,"[10, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,129,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,130,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,131,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,132,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,133,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,134,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,135,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,136,13,"[13, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,137,11,"[11, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,138,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,139,10,"[10, 0, 0]",0
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,140,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,141,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,142,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,143,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,144,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,145,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,146,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,147,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,148,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,149,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,150,10,"[10, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,151,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,152,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,153,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,154,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,155,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,156,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,157,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,158,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,159,10,"[10, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,160,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,161,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,162,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,163,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,164,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,165,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,166,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,167,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,168,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,169,10,"[10, 0, 0]",0
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,170,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,171,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,172,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,173,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,174,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,175,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,176,11,"[11, 0, 0]",7
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,177,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,178,10,"[10, 0, 0]",0
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,179,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,180,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,181,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,182,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,183,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,184,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,185,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,186,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,187,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,188,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,189,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,190,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,191,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,192,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,193,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,194,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,195,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,196,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,197,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,198,10,"[10, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,199,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,200,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,201,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,202,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,203,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,204,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,205,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,206,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,207,10,"[10, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,208,10,"[10, 0, 0]",0
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,209,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,210,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,211,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,212,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,213,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,214,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,215,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,216,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,217,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,218,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,219,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,220,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,221,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,222,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,223,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,224,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,225,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,226,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,227,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,228,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,229,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,230,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,231,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,232,13,"[13, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,233,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,234,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,235,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,236,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,237,10,"[10, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,238,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,239,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,240,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,241,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,242,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,243,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,244,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,245,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,246,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,247,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,248,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,249,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,250,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,251,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,252,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,253,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,254,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,255,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,256,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,257,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,258,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,259,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,260,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,261,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,262,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,263,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,264,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,265,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,266,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,267,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,268,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,269,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,270,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,271,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,272,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,273,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,274,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,275,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,276,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,277,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,278,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,279,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,280,13,"[13, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,281,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,282,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,283,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,284,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,285,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,286,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,287,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,288,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,289,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,290,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,291,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,292,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,293,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,294,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,295,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,296,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,297,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,298,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,299,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,300,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,301,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,302,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,303,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,304,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,305,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,306,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,307,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,308,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,309,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,310,13,"[13, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,311,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,312,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,313,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,314,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,315,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,316,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,317,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,318,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,319,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,320,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,321,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,322,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,323,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,324,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,325,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,326,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,327,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,328,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,329,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,330,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,331,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,332,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,333,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,334,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,335,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,336,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,337,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,338,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,339,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,340,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,341,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,342,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,343,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,344,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,345,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,346,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,347,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,348,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,349,14,"[14, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,350,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,351,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,352,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,353,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,354,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,355,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,356,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,357,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,358,13,"[13, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,359,11,"[11, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,360,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,361,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,362,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,363,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,364,10,"[10, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,365,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,366,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,367,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,368,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,369,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,370,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,371,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,372,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,373,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,374,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,375,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,376,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,377,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,378,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,379,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,380,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,381,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,382,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,383,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,384,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,385,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,386,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,387,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,388,14,"[14, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,389,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,390,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,391,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,392,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,393,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,394,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,395,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,396,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,397,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,398,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,399,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,400,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,401,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,402,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,403,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,404,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,405,13,"[13, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,406,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,407,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,408,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,409,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,410,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,411,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,412,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,413,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,414,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,415,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,416,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,417,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,418,13,"[13, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,419,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,420,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,421,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,422,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,423,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,424,11,"[11, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,425,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,426,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,427,14,"[14, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,428,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,429,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,430,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,431,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,432,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,433,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,434,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,435,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,436,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,437,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,438,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,439,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,440,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,441,10,"[10, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,442,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,443,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,444,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,445,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,446,13,"[13, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,447,13,"[13, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,448,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,449,12,"[12, 0, 0]",0
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,450,10,"[10, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,451,10,"[10, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,452,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,453,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,454,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,455,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,456,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,457,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,458,12,"[12, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,459,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,460,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,461,11,"[11, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,462,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,463,11,"[11, 0, 0]",5
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,464,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,465,11,"[11, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,466,13,"[13, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,467,11,"[11, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,468,12,"[12, 0, 0]",1
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,469,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,470,12,"[12, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,471,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,472,10,"[10, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,473,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,474,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,475,12,"[12, 0, 0]",4
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,476,12,"[12, 0, 0]",6
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,477,12,"[12, 0, 0]",2
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,478,11,"[11, 0, 0]",3
+0,"US Washington, D.C. (demo gateway)",38.9072,-77.0369,0,479,12,"[12, 0, 0]",1

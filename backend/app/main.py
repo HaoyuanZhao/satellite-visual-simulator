@@ -3,6 +3,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from .loader import SatelliteDataset
 from .settings import DATASET_ROOT, DEFAULT_DATASET_DIR, DB_CACHE_ROOT
@@ -95,7 +96,12 @@ def list_datasets():
 @app.get("/api/metadata")
 def metadata(dataset: str | None = Query(default=None, description="Dataset name, under configured root")):
     store = _get_store(dataset)
-    return {"dataset": _safe_dataset_path(dataset).name, "iterations": store.get_metadata()}
+    iterations = store.get_metadata()
+    return {
+        "dataset": _safe_dataset_path(dataset).name,
+        "step_seconds": store.get_step_seconds(iterations),
+        "iterations": iterations,
+    }
 
 
 @app.get("/api/frames")
@@ -108,7 +114,9 @@ def frames(
     payload = [store.to_dict(frame) for frame in store.get_frames(start=start, end=end)]
     if not payload:
         raise HTTPException(status_code=404, detail="No frames found for the requested range.")
-    return payload
+    # Frames are already decoded JSON from SQLite. Serialize them directly rather
+    # than recursively converting every coordinate and edge a second time.
+    return JSONResponse(payload)
 
 
 @app.get("/api/frames/{iteration}")
@@ -117,4 +125,4 @@ def frame(iteration: int, dataset: str | None = Query(default=None, description=
     frame = store.get_frame(iteration)
     if frame is None:
         raise HTTPException(status_code=404, detail=f"Iteration {iteration} not found.")
-    return store.to_dict(frame)
+    return JSONResponse(store.to_dict(frame))
