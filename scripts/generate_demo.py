@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
-DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "demo_data" / "demo_constellation"
+DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "data" / "synthetic_constellation"
 FRAMES = 24
 PLANES_PER_SHELL = 4
 SATELLITES_PER_PLANE = 12

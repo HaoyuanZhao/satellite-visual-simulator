@@ -15,14 +15,16 @@ REQUIRED_FILES = (
     "frontend/Dockerfile", "frontend/.env.example", "frontend/index.html",
     "frontend/nginx.conf", "frontend/package.json", "frontend/package-lock.json",
     "frontend/tsconfig.json", "frontend/vite.config.ts",
+    "frontend/src/services/playback.ts", "frontend/tests/playback.test.mjs",
+    "docs/demo.gif",
 )
 SOURCE_GROUPS = (
     ("backend/app", {".py"}),
     ("backend/tests", {".py"}),
     ("frontend/src", {".ts", ".tsx", ".css"}),
     ("frontend/tests", {".mjs"}),
-    ("demo_data", {".csv", ".md"}),
-    ("docs", {".md", ".png", ".webp"}),
+    ("demo_data", {".csv", ".parquet", ".md"}),
+    ("docs", {".md", ".png", ".webp", ".gif"}),
     ("scripts", {".py"}),
     (".github/workflows", {".yml", ".yaml"}),
 )
@@ -57,7 +59,7 @@ def export(output: Path) -> int:
     # Read once: the bytes checked below are the bytes written to the archive.
     contents = [(path.relative_to(ROOT), path.read_bytes(), path.stat().st_mode) for path in paths]
     for relative, content, _ in contents:
-        if relative.suffix in {".png", ".webp"}:
+        if relative.suffix in {".png", ".webp", ".gif"}:
             continue
         for label, pattern in CHECKS.items():
             if pattern.search(content):

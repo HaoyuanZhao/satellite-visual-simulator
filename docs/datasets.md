@@ -24,6 +24,10 @@ Optional columns: `sim_time_utc`, `degraded_ISL_link`.
 Each frame has one row of satellite ID pairs, serialized as a list.
 When both formats exist, Parquet is used for link data.
 
+Before publishing an exported dataset, run `python scripts/validate_dataset.py
+<dataset-directory>` to check matching frame indices, satellite IDs, timestamps,
+and route edges. The CI workflow checks the bundled recording with this command.
+
 ```csv
 iteration,sim_time_utc,ISL_link,degraded_ISL_link
 0,2025-01-01T00:00:00Z,"[[0, 1]]","[]"
